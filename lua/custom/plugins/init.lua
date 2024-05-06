@@ -59,6 +59,7 @@ return {
 
   { -- zen mode
     'folke/zen-mode.nvim',
+    lazy = false,
     opts = {},
     keys = {
       { '<leader>z', '<cmd>ZenMode<cr>' },
@@ -127,7 +128,7 @@ return {
   },
 
   { -- lualine with catpuccin theme
-    'feline-nvim/feline.nvim',
+    'freddiehaddad/feline.nvim',
     config = function()
       local ctp_feline = require 'catppuccin.groups.integrations.feline'
       ctp_feline.setup()

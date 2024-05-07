@@ -141,4 +141,19 @@ return {
       }
     end,
   },
+
+  {
+    'utilyre/barbecue.nvim',
+    name = 'barbecue',
+    dependencies = {
+      'SmiteshP/nvim-navic',
+      'nvim-tree/nvim-web-devicons', -- optional dependency
+    },
+    opts = {},
+    config = function()
+      require('barbecue').setup {
+        theme = 'catppuccin',
+      }
+    end,
+  },
 }

@@ -64,6 +64,10 @@ return {
     keys = {
       { '<leader>z', '<cmd>ZenMode<cr>' },
     },
+    config = function()
+      vim.cmd 'autocmd BufEnter *.md :ZenMode'
+      vim.cmd 'autocmd BufLeave *.md :ZenMode'
+    end,
   },
 
   {

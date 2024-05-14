@@ -663,6 +663,13 @@ require('lazy').setup({
         desc = '[F]ormat buffer',
       },
     },
+    config = function()
+      require('conform').formatters.checkstyle = {
+        inherit = false,
+        command = 'checkstyle',
+        args = { '$FILENAME', '-c', '~/checkstyle/*.xml' },
+      }
+    end,
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
@@ -684,6 +691,7 @@ require('lazy').setup({
         -- is found.
         -- javascript = { { "prettierd", "prettier" } },
         markdown = { { 'prettierd', 'markdownlint' } },
+        java = { 'checkstyle' },
       },
     },
   },
@@ -808,6 +816,15 @@ require('lazy').setup({
 
     config = function()
       require('kanagawa').setup {
+        colors = {
+          theme = {
+            all = {
+              ui = {
+                bg_gutter = 'none',
+              },
+            },
+          },
+        },
         overrides = function(colors)
           local theme = colors.theme
           return {
@@ -862,6 +879,7 @@ require('lazy').setup({
           suffix_last = 'l', -- Suffix to search with "prev" method
           suffix_next = 'n', -- Suffix to search with "next" method
         },
+        require('mini.starter').setup(),
       }
 
       -- Simple and easy statusline.

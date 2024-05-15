@@ -46,14 +46,20 @@ return {
     'folke/flash.nvim',
     event = 'VeryLazy',
     ---@type Flash.Config
-    opts = {},
+    opts = {
+      modes = {
+        search = {
+          enabled = true,
+        },
+      },
+    },
   -- stylua: ignore
-  keys = {
-    { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-    { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-    { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-    { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-    { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<C-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
 
@@ -131,7 +137,7 @@ return {
     end,
   },
 
-  {
+  { -- top bar
     'utilyre/barbecue.nvim',
     name = 'barbecue',
     dependencies = {
@@ -144,5 +150,49 @@ return {
         theme = 'catppuccin',
       }
     end,
+  },
+
+  {
+    'MaximilianLloyd/ascii.nvim',
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+    },
+  },
+
+  { -- startup screen
+    'nvimdev/dashboard-nvim',
+    event = 'VimEnter',
+    config = function()
+      ascii = require 'ascii'
+      require('dashboard').setup {
+        config = {
+          header = ascii.art.text.neovim.sharp,
+          shortcut = {
+            { desc = '📦 Update', group = '@property', action = 'Lazy update', key = 'u' },
+            {
+              icon = '📂 ',
+              icon_hl = '@variable',
+              desc = 'Files',
+              group = 'Label',
+              action = 'Telescope find_files',
+              key = 'f',
+            },
+            {
+              desc = '🗄️ Projects',
+              group = 'DiagnosticHint',
+              action = 'Telescope projects',
+              key = 'p',
+            },
+            {
+              desc = '⚙️  dotfiles',
+              group = 'Number',
+              action = "lua require 'telescope.builtin'.find_files { cwd = vim.fn.stdpath 'config' }",
+              key = 'd',
+            },
+          },
+        },
+      }
+    end,
+    dependencies = { { 'nvim-tree/nvim-web-devicons' } },
   },
 }

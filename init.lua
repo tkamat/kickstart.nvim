@@ -812,6 +812,7 @@ require('lazy').setup({
             enabled = true,
             style = 'nvchad',
           },
+          which_key = true,
         },
       }
     end,
@@ -850,8 +851,6 @@ require('lazy').setup({
           suffix_next = 'n', -- Suffix to search with "next" method
         },
       }
-
-      require('mini.starter').setup()
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,

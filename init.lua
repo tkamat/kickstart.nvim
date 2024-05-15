@@ -663,13 +663,6 @@ require('lazy').setup({
         desc = '[F]ormat buffer',
       },
     },
-    config = function()
-      require('conform').formatters.checkstyle = {
-        inherit = false,
-        command = 'checkstyle',
-        args = { '$FILENAME', '-c', '~/checkstyle/*.xml' },
-      }
-    end,
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
@@ -685,13 +678,12 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
+        python = { 'isort', 'black' },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
         -- javascript = { { "prettierd", "prettier" } },
         markdown = { { 'prettierd', 'markdownlint' } },
-        java = { 'checkstyle' },
       },
     },
   },
@@ -802,47 +794,25 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'rebelot/kanagawa.nvim',
+    'catppuccin/nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'kanagawa'
+      vim.cmd.colorscheme 'catppuccin'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
     end,
-
     config = function()
-      require('kanagawa').setup {
-        colors = {
-          theme = {
-            all = {
-              ui = {
-                bg_gutter = 'none',
-              },
-            },
+      require('catppuccin').setup {
+        integrations = {
+          telescope = {
+            enabled = true,
+            style = 'nvchad',
           },
         },
-        overrides = function(colors)
-          local theme = colors.theme
-          return {
-            NormalFloat = { bg = 'none' },
-            FloatBorder = { bg = 'none' },
-            FloatTitle = { bg = 'none' },
-            NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
-            LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-            MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-            TelescopeTitle = { fg = theme.ui.special, bold = true },
-            TelescopePromptNormal = { bg = theme.ui.bg_p1 },
-            TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
-            TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
-            TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
-            TelescopePreviewNormal = { bg = theme.ui.bg_dim },
-            TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
-          }
-        end,
       }
     end,
   },
@@ -879,15 +849,16 @@ require('lazy').setup({
           suffix_last = 'l', -- Suffix to search with "prev" method
           suffix_next = 'n', -- Suffix to search with "next" method
         },
-        require('mini.starter').setup(),
       }
+
+      require('mini.starter').setup()
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
-      local statusline = require 'mini.statusline'
+      -- local statusline = require 'mini.statusline'
       -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
+      -- statusline.setup { use_icons = vim.g.have_nerd_font }
 
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for

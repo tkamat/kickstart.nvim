@@ -368,8 +368,18 @@ require('lazy').setup({
         -- pickers = {}
         defaults = {
           mappings = {
-            i = { ['<C-t>'] = open_with_trouble, ['<C-q>'] = actions.send_to_qflist },
-            n = { ['<C-t>'] = open_with_trouble, ['<C-q>'] = actions.send_to_qflist },
+            i = {
+              ['<C-t>'] = open_with_trouble,
+              ['<C-q>'] = actions.send_to_qflist,
+              ['<C-v>'] = actions.select_horizontal,
+              ['<C-s>'] = actions.select_vertical,
+            },
+            n = {
+              ['<C-t>'] = open_with_trouble,
+              ['<C-q>'] = actions.send_to_qflist,
+              ['<C-v>'] = actions.select_horizontal,
+              ['<C-s>'] = actions.select_vertical,
+            },
           },
         },
         extensions = {

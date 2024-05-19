@@ -39,6 +39,7 @@ local config = {
   -- for a list of options
   settings = {
     java = {
+      format = false,
       sources = {
         organizeImports = {
           starThreshold = 9999,

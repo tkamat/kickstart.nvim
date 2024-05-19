@@ -38,7 +38,7 @@ return {
       'Git',
     },
     keys = {
-      { '<leader>gs', '<cmd>Git<cr>' },
+      { '<leader>gs', '<cmd>Git<cr>', desc = '[G]it [s]tatus' },
     },
   },
 
@@ -68,7 +68,7 @@ return {
     lazy = false,
     opts = {},
     keys = {
-      { '<leader>z', '<cmd>ZenMode<cr>' },
+      { '<leader>z', '<cmd>ZenMode<cr>', desc = '[Z]en mode' },
     },
     config = function()
       vim.cmd 'autocmd BufEnter *.md :ZenMode'
@@ -194,5 +194,14 @@ return {
       }
     end,
     dependencies = { { 'nvim-tree/nvim-web-devicons' } },
+  },
+
+  {
+    'eandrju/cellular-automaton.nvim',
+    keys = {
+      { '<leader>nl', '<cmd>CellularAutomaton game_of_life<cr>', desc = 'Game of [l]ife' },
+      { '<leader>nr', '<cmd>CellularAutomaton make_it_rain<cr>', desc = 'Make it [r]ain' },
+      { '<leader>ns', '<cmd>CellularAutomaton scramble<cr>', desc = '[S]cramble' },
+    },
   },
 }

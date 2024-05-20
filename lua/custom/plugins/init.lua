@@ -196,12 +196,57 @@ return {
     dependencies = { { 'nvim-tree/nvim-web-devicons' } },
   },
 
-  {
+  { -- cellular automaton
     'eandrju/cellular-automaton.nvim',
     keys = {
-      { '<leader>nl', '<cmd>CellularAutomaton game_of_life<cr>', desc = 'Game of [l]ife' },
-      { '<leader>nr', '<cmd>CellularAutomaton make_it_rain<cr>', desc = 'Make it [r]ain' },
-      { '<leader>ns', '<cmd>CellularAutomaton scramble<cr>', desc = '[S]cramble' },
+      { '<leader>ml', '<cmd>CellularAutomaton game_of_life<cr>', desc = 'Game of [l]ife' },
+      { '<leader>mr', '<cmd>CellularAutomaton make_it_rain<cr>', desc = 'Make it [r]ain' },
+      { '<leader>ms', '<cmd>CellularAutomaton scramble<cr>', desc = '[S]cramble' },
     },
+  },
+
+  { -- theme colored devicons
+    'rachartier/tiny-devicons-auto-colors.nvim',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
+    event = 'VeryLazy',
+    config = function()
+      local theme_colors = require('catppuccin.palettes').get_palette 'mocha'
+      require('tiny-devicons-auto-colors').setup {
+        colors = theme_colors,
+      }
+    end,
+  },
+
+  { -- leetcode integration
+    'kawre/leetcode.nvim',
+    build = ':TSUpdate html',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+      'nvim-lua/plenary.nvim', -- required by telescope
+      'MunifTanjim/nui.nvim',
+
+      -- optional
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons',
+    },
+    opts = {
+      lang = 'python3',
+    },
+    keys = {
+      { '<leader>ll', '<cmd>Leet<cr>', desc = '[L]eetcode dashboard' },
+      { '<leader>lr', '<cmd>Leet run<cr>', desc = '[L]eetcode [r]un' },
+      { '<leader>ls', '<cmd>Leet submit<cr>', desc = '[L]eetcode [s]ubmit' },
+      { '<leader>lo', '<cmd>Leet open<cr>', desc = '[L]eetcode [o]pen' },
+      { '<leader>lu', '<cmd>Leet cache update<cr>', desc = '[L]eetcode [u]pdate' },
+    },
+  },
+
+  { -- latex
+    'lervag/vimtex',
+    lazy = false, -- we don't want to lazy load VimTeX
+    -- tag = "v2.15", -- uncomment to pin to a specific release
+    init = function() end,
   },
 }

@@ -160,6 +160,14 @@ if vim.g.started_by_firenvim == true then
 else
   vim.o.laststatus = 2
 end
+local fileGrp = vim.api.nvim_create_augroup('file_type', { clear = true })
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = { '*.txt' },
+  callback = function()
+    vim.bo.filetype = 'markdown'
+  end,
+  group = fileGrp,
+})
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`

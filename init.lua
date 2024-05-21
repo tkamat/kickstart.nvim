@@ -154,6 +154,13 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- firenvim config to hide status bar
+if vim.g.started_by_firenvim == true then
+  vim.o.laststatus = 0
+else
+  vim.o.laststatus = 2
+end
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 

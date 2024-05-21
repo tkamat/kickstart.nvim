@@ -146,9 +146,11 @@ return {
     },
     opts = {},
     config = function()
-      require('barbecue').setup {
-        theme = 'catppuccin',
-      }
+      if vim.g.started_by_firenvim ~= true then
+        require('barbecue').setup {
+          theme = 'catppuccin',
+        }
+      end
     end,
   },
 
@@ -248,5 +250,25 @@ return {
     lazy = false, -- we don't want to lazy load VimTeX
     -- tag = "v2.15", -- uncomment to pin to a specific release
     init = function() end,
+  },
+
+  { -- chrome integration
+    'glacambre/firenvim',
+
+    -- Lazy load firenvim
+    -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
+    lazy = not vim.g.started_by_firenvim,
+    build = function()
+      vim.fn['firenvim#install'](0)
+    end,
+    config = function()
+      vim.g.firenvim_config = {
+        localSettings = {
+          ['.*'] = {
+            takeover = 'never',
+          },
+        },
+      }
+    end,
   },
 }

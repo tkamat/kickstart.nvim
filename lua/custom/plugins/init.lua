@@ -133,6 +133,12 @@ return {
             winblend = 0,
           },
         },
+        keymaps = {
+          ['<C-h>'] = false,
+          ['<C-l>'] = false,
+          ['<C-s>'] = 'actions.select_vsplit',
+          ['<C-v>'] = 'actions.select_split',
+        },
       }
     end,
   },
@@ -235,6 +241,11 @@ return {
     },
     opts = {
       lang = 'python3',
+      injector = {
+        ['python3'] = {
+          before = true,
+        },
+      },
     },
     keys = {
       { '<leader>ll', '<cmd>Leet<cr>', desc = '[L]eetcode dashboard' },
@@ -270,5 +281,33 @@ return {
         },
       }
     end,
+  },
+
+  { -- highlight colors
+    'brenoprata10/nvim-highlight-colors',
+    opts = {},
+  },
+
+  { -- notifications
+    'folke/noice.nvim',
+    event = 'VeryLazy',
+    opts = {
+      lsp = {
+        -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+        override = {
+          ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+          ['vim.lsp.util.stylize_markdown'] = true,
+          ['cmp.entry.get_documentation'] = true, -- requires hrsh7th/nvim-cmp
+        },
+      },
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      'MunifTanjim/nui.nvim',
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      'rcarriga/nvim-notify',
+    },
   },
 }

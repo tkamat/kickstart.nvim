@@ -40,6 +40,7 @@ local config = {
   settings = {
     java = {
       format = false,
+      signatureHelp = { enabled = true },
       sources = {
         organizeImports = {
           starThreshold = 9999,

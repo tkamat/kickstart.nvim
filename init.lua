@@ -318,6 +318,7 @@ require('lazy').setup({
         ['<leader>x'] = { name = 'Trouble', _ = 'which_key_ignore' },
         ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
         ['<leader>l'] = { name = '[L]eetcode', _ = 'which_key_ignore' },
+        ['<leader>n'] = { name = 'Obsidian [N]otes', _ = 'which_key_ignore' },
       }
       -- visual mode
       require('which-key').register({
@@ -815,6 +816,7 @@ require('lazy').setup({
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+          { name = 'nvim_lsp_signature_help' },
         },
       }
     end,
@@ -844,6 +846,7 @@ require('lazy').setup({
             style = 'nvchad',
           },
           which_key = true,
+          noice = true,
         },
       }
     end,

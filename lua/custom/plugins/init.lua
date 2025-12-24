@@ -62,24 +62,10 @@ return {
       { "<C-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
-
-  { -- zen mode
-    'folke/zen-mode.nvim',
-    lazy = false,
-    opts = {},
-    keys = {
-      { '<leader>z', '<cmd>ZenMode<cr>', desc = '[Z]en mode' },
-    },
-    config = function()
-      vim.cmd 'autocmd BufEnter *.md :ZenMode'
-      vim.cmd 'autocmd BufLeave *.md :ZenMode'
-    end,
-  },
-
   {
     { -- trouble quickfix and diagnostics
       'folke/trouble.nvim',
-      branch = 'dev', -- IMPORTANT!
+      branch = 'main', -- IMPORTANT!
       keys = {
         {
           '<leader>xx',
@@ -151,13 +137,6 @@ return {
       'nvim-tree/nvim-web-devicons', -- optional dependency
     },
     opts = {},
-    config = function()
-      if vim.g.started_by_firenvim ~= true then
-        require('barbecue').setup {
-          theme = 'catppuccin',
-        }
-      end
-    end,
   },
 
   {
@@ -263,26 +242,6 @@ return {
     init = function() end,
   },
 
-  { -- chrome integration
-    'glacambre/firenvim',
-
-    -- Lazy load firenvim
-    -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
-    lazy = not vim.g.started_by_firenvim,
-    build = function()
-      vim.fn['firenvim#install'](0)
-    end,
-    config = function()
-      vim.g.firenvim_config = {
-        localSettings = {
-          ['.*'] = {
-            takeover = 'never',
-          },
-        },
-      }
-    end,
-  },
-
   { -- highlight colors
     'brenoprata10/nvim-highlight-colors',
     opts = {},
@@ -308,6 +267,13 @@ return {
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
       'rcarriga/nvim-notify',
+    },
+    keys = {
+      {
+        '<leader>nd',
+        '<cmd>Noice dismiss<cr>',
+        desc = '[N]oice [d]ismiss',
+      },
     },
   },
 }

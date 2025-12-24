@@ -32,13 +32,22 @@ return {
     end,
   },
 
-  { -- git fugitive
-    'https://tpope.io/vim/fugitive.git',
-    cmd = {
-      'Git',
+  {
+    'NeogitOrg/neogit',
+    lazy = true,
+    dependencies = {
+      'nvim-lua/plenary.nvim', -- required
+      'sindrets/diffview.nvim', -- optional - Diff integration
+
+      -- Only one of these is needed.
+      'nvim-telescope/telescope.nvim', -- optional
+      'ibhagwan/fzf-lua', -- optional
+      'nvim-mini/mini.pick', -- optional
+      'folke/snacks.nvim', -- optional
     },
+    cmd = 'Neogit',
     keys = {
-      { '<leader>gs', '<cmd>Git<cr>', desc = '[G]it [s]tatus' },
+      { '<leader>gs', '<cmd>Neogit<cr>', desc = 'Show Neogit UI' },
     },
   },
 
